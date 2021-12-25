@@ -7,6 +7,13 @@ class User < ApplicationRecord
 
   has_many :notifications, foreign_key: :recipient_id
   has_many :services
+  has_one :account
+
+  PRIORITY_USER_MINIMUM_BALANCE = 100_000
+
+  def priority_user?
+    account.balance > PRIORITY_USER_MINIMUM_BALANCE
+  end
 
   def geocode(service: GoogleMapsAPI)
     lat, lng = service.geocode(address)
