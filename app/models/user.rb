@@ -12,6 +12,7 @@ class User < ApplicationRecord
   PRIORITY_USER_MINIMUM_BALANCE = 100_000
 
   def priority_user?
+    
     account.balance > PRIORITY_USER_MINIMUM_BALANCE
   end
 
